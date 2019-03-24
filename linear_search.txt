@@ -1,0 +1,24 @@
+.23456789012345678
+.
+         start   0
+k        byte    c'a'
+str      byte    c'bhgmfed'
+e        byte    x'ffffff'
+len      word    6
+.
+bgn      ldx     #0
+loop     lda     #0
+         ldch    str,x
+         rmo     a,s
+         lda     #0
+         ldch    k
+         compr   a,s
+         jeq     found
+         tix     len
+         jlt     loop
+         lda     e
+         j       fin
+found    lda     #str
+         addr    x,a
+fin      j       *
+         end     bgn

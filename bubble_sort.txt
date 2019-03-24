@@ -1,0 +1,43 @@
+.23456789012345678
+.
+         start   0
+nums     byte    c'634512'
+ilen     word    6
+jlen     word    5
+temp     resb    1
+ss       resw    1
+.
+bgn      lds     #0
+         sts     ss
+iloop    ldx     #0
+jloop    lda     #0
+         ldch    nums,x
+         rmo     x,s
+         ldt     #1
+         addr    t,x
+         rmo     a,t
+         ldch    nums,x
+         compr   a,t
+         jgt     swap
+jj       rmo     s,x
+         tix     jlen
+         jlt     jloop
+         lda     #1
+         lds     ss
+         addr    a,s
+         sts     ss
+         rmo     s,a
+         comp    ilen
+         jlt     iloop
+         j       fin
+.
+swap     stch    temp
+         rmo     t,a
+         stch    nums,x
+         ldch    temp
+         rmo     s,x
+         stch    nums,x
+         j       jj
+fin      j       *
+         end     bgn
+         

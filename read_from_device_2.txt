@@ -1,0 +1,21 @@
+.23456789012345678
+.
+         start   0
+res      resw    1
+in       byte    x'f3'
+.
+bgn      lda     #0
+iloop    td      in
+         jeq     iloop
+         rd      in
+         sub     #48
+         mul     #10
+         sta     res
+i2loop   td      in
+         jeq     i2loop
+         rd      in
+         sub     #48
+         add     res
+         sta     res
+         j       *
+         end     bgn

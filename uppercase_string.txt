@@ -1,0 +1,42 @@
+.23456789012345678
+.
+         start   0
+in       byte    x'f3'
+out      byte    x'05'
+.
+bgn      ldx     #0
+rloop    td      in
+         jeq     rloop
+         rd      in
+         comp    #4
+         jeq     eof
+         jsub    upper
+         lda     #1
+         addr    a,x
+         j       rloop
+eof      jsub    op
+         j       *
+.
+.
+upper    sub     #32
+         stch    str,x
+         rsub
+.
+op       lda     #1
+         subr    a,x
+         rmo     x,s
+         addr    a,s
+         ldx     #0
+wloop    td      out
+         jeq     wloop
+         ldch    str,x
+         wd      out
+         lda     #1
+         addr    a,x
+         compr   x,s
+         jlt     wloop
+         rsub
+.
+str      resb    100
+         end     bgn
+         

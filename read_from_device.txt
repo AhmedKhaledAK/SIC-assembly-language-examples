@@ -1,0 +1,18 @@
+.23456789012345678
+.
+         start   0
+len      word    0
+in       byte    x'f3'
+.
+bgn      lda     #0
+loop     td      in
+         jeq     loop
+         rd      in
+         comp    #4
+         jeq     exit
+         lda     len
+         add     #1
+         sta     len
+         j       loop
+exit     j       *
+         end     bgn

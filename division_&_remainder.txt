@@ -1,0 +1,18 @@
+.23456789012345678
+.
+         start   0
+alpha    resw    1
+delta    resw    1
+beta     word    10
+gamma    word    2
+.
+bgn      lda     beta
+         div     gamma
+         sta     alpha
+         mul     gamma
+         rmo     a,s
+         lda     beta
+         subr    s,a
+         sta     delta
+         j       *
+         end     bgn

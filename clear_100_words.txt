@@ -1,0 +1,13 @@
+.23456789012345678
+.
+         start   0
+str      resw    100
+.
+bgn      ldt     #300
+         ldx     #0
+loop     ldch    #0
+         stch    str,x
+         tixr    t
+         jlt     loop
+         j       *
+         end     bgn
