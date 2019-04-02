@@ -1,0 +1,21 @@
+.23456789012345678
+.
+         start   0
+min      word    10
+tab      word    5,6,3
+         word    2,4
+.
+bgn      ldx     #0
+loop     ldt     #3
+         lds     tab,x
+         lda     min
+         compr   s,a
+         jlt     cmin
+jj       addr    t,x
+         ldt     #15
+         compr   x,t
+         jlt     loop
+         j       *
+cmin     sts     min
+         j       jj
+         end     bgn
