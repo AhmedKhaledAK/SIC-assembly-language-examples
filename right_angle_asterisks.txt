@@ -1,0 +1,34 @@
+.23456789012345678
+.
+         start   0
+ast      byte    c'*'
+ent      byte    x'00'
+od       byte    x'05'
+.
+bgn      lds     #10
+         ldx     #0
+         lda     #0
+loop     ldt     #0
+test     td      od
+         jeq     test
+         ldch    ast
+         wd      od
+         lda     #1
+         addr    a,t
+         compr   t,x
+         jlt     test
+         jeq     test
+         jsub    pent
+         lda     #1
+         addr    a,x
+         compr   x,s
+         jlt     loop
+         j       *
+.
+pent     ldch    ent
+op       td      od
+         jeq     op
+         wd      od
+         rsub
+         end     bgn
+         
